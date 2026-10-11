@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quotebond</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<nav aria-label="Main">
+  <div class="logo"><i>"</i>Quotebond</div>
+  <a href="#market">Market</a><a href="#dashboard">Dashboard</a><a href="#how">How it works</a>
+  <button id="wbtn" title="Click to choose a different account">Connect wallet</button><button class="ghost" id="wout" hidden>Disconnect</button>
+</nav>
+
+<main class="wrap">
+<section class="hero">
+  <div>
+    <h1>Back your quote,<br>or <b>bond against it.</b></h1>
+    <p class="lead">Post a claim, the exact quote and its source. Stake GEN on it. If someone disputes it, GenLayer validators read the page and settle who was right.</p>
+    <div class="row"><a class="btn" href="#market" style="text-decoration:none">Open the market</a><button class="ghost" onclick="location.hash='how'">See how it works</button></div>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <div class="orb"></div><div class="orb p"></div><div class="orb"></div>
+    <div class="glass">
+      <span class="src">Claim by 0x71C…9a2 · bond 5 GEN</span>
+      <q>The report says emissions fell 12% last year.</q>
+      <span class="src">Validators reading the source page</span>
+      <div class="vals"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="Market totals">
+  <div class="card"><strong id="s1">0</strong><span>claims posted</span></div>
+  <div class="card"><strong id="s2">0</strong><span>GEN locked in bonds</span></div>
+  <div class="card"><strong id="s3">0</strong><span>settled by validators</span></div>
+</section>
+
+<section id="market">
+  <h2>The market</h2>
+  <p class="sub">Every action below is a real transaction on GenLayer Studio Next. Resolving can take a minute while validators agree.</p>
+  <div class="app">
+    <div class="card">
+      <div class="wal"><div><span style="font-size:13px;color:var(--mute)">Withdrawable</span><div style="font-size:30px;font-weight:200" id="cred">0 GEN</div></div><button class="ghost" id="wd">Withdraw</button></div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:18px 0 4px">
+      <label for="f1">Claim</label><textarea id="f1" placeholder="Emissions fell 12% last year"></textarea>
+      <label for="f2">Exact quote from the source</label><textarea id="f2" placeholder="fell by 12 percent"></textarea>
+      <label for="f3">Source URL</label><input id="f3" placeholder="https://example.org/report">
+      <label for="f4">Bond (GEN)</label><input id="f4" type="number" min="1" value="5">
+      <button id="pub" style="width:100%;margin-top:18px">Post claim with bond</button>
+    </div>
+    <div><div class="banner" id="banner"></div><div class="claims" id="list" aria-live="polite"></div></div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <h2>Your dashboard</h2>
+  <p class="sub" id="dsub">Connect your wallet to see your claims.</p>
+  <div class="stats four" id="dstats"></div>
+  <div class="dgrid">
+    <div class="card"><h3>Claims I posted</h3><div id="dpost"></div></div>
+    <div class="card"><h3>Claims I challenged</h3><div id="dchal"></div></div>
+  </div>
+  <div class="card" style="margin:14px 0 80px"><h3>My transactions</h3><div id="dtx"></div></div>
+</section>
+
+<section id="how">
+  <h2>How a claim settles</h2>
+  <p class="sub">Four steps, all on chain.</p>
+  <div class="steps">
+    <div class="card"><div class="n">1</div><b>Post</b><p>Claim, exact quote, source URL and a bond.</p></div>
+    <div class="card"><div class="n">2</div><b>Challenge</b><p>Anyone matches the bond to dispute it.</p></div>
+    <div class="card"><div class="n">3</div><b>Resolve</b><p>Validators fetch the page and agree on one word.</p></div>
+    <div class="card"><div class="n">4</div><b>Withdraw</b><p>The winner takes the pool. Unclear? Both are refunded.</p></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <span>Studio Next · chain 61997 · <code>studio-next.genlayer.com/api</code></span>
+  <span>Contract <code id="addr">not set</code></span>
+</div></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
